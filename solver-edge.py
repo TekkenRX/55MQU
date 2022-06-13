@@ -1,20 +1,22 @@
 from pyomo.environ import *
 import sys
+import networkx as nx
 
-from pyrsistent import v
-
-#   Criação do modelo
+#   Criação do modelo e do grafo
 model = ConcreteModel()
+G = nx.Graph()
 
 #   Variáveis de decisão
 
 f = open(sys.argv[1], "r")
-c = [] #custos das arestas
-n = [] #arestas em cada vértice
+c = [] # custos das arestas
+n = [] # arestas em cada vértice
+i = 0  # contador para os vértices
 for x in f:
     if x[0] != "#":
         if x[0] == "(":
             n.append(x.strip().strip('('))
+            i = i + 1
         else:
             c = x.strip().split(',')
 f.close()
@@ -35,7 +37,6 @@ def sumVertex(splt):
 
 for i in n:
     splt = i.split(',')
-    print(splt)
     model.cons.add(expr = sumVertex(splt) >= 1)
 
 #   Função objetivo
