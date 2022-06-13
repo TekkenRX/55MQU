@@ -1,16 +1,24 @@
 from pyomo.environ import *
-
+import sys
 
 #  v0 - v3 \
 #  |    |  v4  
 #  v1 - v2 /
 
-n = 5 #numero vertices
-c = [2, 2, 2, 2, 2] # custos dos vértices
-
 # Criação do modelo
 model = ConcreteModel()
 
+# Variáveis de decisão
+f = open(sys.argv[1], "r")
+c = [] # custos dos vértices
+for x in f:
+    if x[0] != "#":
+        if x[0] == "(":
+            a
+        else:
+            c = x.strip().split(',')
+f.close()
+n = len(c) #numero vertices
 # Variáveis de decisão
 model.x = Var(range(n), domain = Boolean)
 

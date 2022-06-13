@@ -1,22 +1,18 @@
 from pyomo.environ import *
 import sys
-import networkx as nx
 
 #   Criação do modelo e do grafo
 model = ConcreteModel()
-G = nx.Graph()
 
 #   Variáveis de decisão
 
 f = open(sys.argv[1], "r")
 c = [] # custos das arestas
 n = [] # arestas em cada vértice
-i = 0  # contador para os vértices
 for x in f:
     if x[0] != "#":
         if x[0] == "(":
             n.append(x.strip().strip('('))
-            i = i + 1
         else:
             c = x.strip().split(',')
 f.close()
