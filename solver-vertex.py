@@ -1,10 +1,6 @@
 from pyomo.environ import *
 import sys
 
-#  v0 - v3 \
-#  |    |  v4  
-#  v1 - v2 /
-
 # Criação do modelo
 model = ConcreteModel()
 
